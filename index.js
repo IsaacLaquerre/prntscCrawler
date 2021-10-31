@@ -36,13 +36,13 @@ async function getImages() {
         return process.exit();
     };
 
-    var id = generateId()
+    var id = generateId();
 
-    var response = await fetch("https://prnt.sc/" + id)
+    var response = await fetch("https://prnt.sc/" + id);
     var body = await response.text();
     var url = body.slice(body.indexOf("screenshot-image\" src=\"") + 23, body.indexOf("alt=\"Lightshot screenshot") - 26);
 
-    if (url.includes("<") || url.includes(">")) { console.log(url); return process.exit();/*getImages();*/ }
+    if (url.includes("<") || url.includes(">")) return getImages();
     if (url.startsWith("//")) url = "https:" + url;
 
     var downloaded = false;
@@ -62,7 +62,7 @@ async function getImages() {
 
         download.image({ url: url, dest: "./images/log" + log, fileName: id }).then(({ filename }) => {
             console.log("#" + imageCount + ", ID: " + id + ", saved as ", filename);
-        }).catch((err) => { console.log(err); return getImages(); });
+        }).catch(() => { return getImages(); });
 
         imageCount++;
 
@@ -94,11 +94,11 @@ async function getDirs(rootDir, cb) {
 function generateId() {
     var length = 6;
     var chars = "abcdefghijklmnopqrstuvwxyz1234567890";
-    var result = ""
+    var result = "";
 
     for (var i=0; i<length; i++) {
         result += chars[Math.floor(Math.random() * chars.length)];
     }
 
-    return result
+    return result;
 }
