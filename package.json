@@ -1,0 +1,25 @@
+{
+  "name": "prntsccrawler",
+  "version": "1.0.0",
+  "description": "Simple web crawler to get images from prnt.sc",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "image-downloader": "^4.0.3",
+    "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacLaquerre/prntscCrawler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaacLaquerre/prntscCrawler/issues"
+  },
+  "homepage": "https://github.com/IsaacLaquerre/prntscCrawler#readme"
+}
