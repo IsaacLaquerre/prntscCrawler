@@ -39,7 +39,7 @@ getDirs("./images/", dirs => {
 async function getImages() {
 
     if (imageCount >= imagesPerLog) {
-        console.log("\n\n------------------------------------\nFolder images/log" + log + " successfully filled with " + imagesPerLog + " images");
+        console.log("\n\n------------------------------------\nFolder images/log" + log + " successfully filled with " + imageCount + " images");
         return process.exit();
     };
 
