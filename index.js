@@ -30,7 +30,7 @@ getDirs("./images/", dirs => {
         fs.mkdirSync("./images/log" + log);
     }
     
-    console.log("Dumping " + imagesPerLog + " images in images/log" + log + "...\n------------------------------------\n\n");
+    console.log("Dumping " + imagesPerLog + " images in images/log" + log + "...\n------------------------------------\n");
 
     getImages();
 
@@ -39,7 +39,7 @@ getDirs("./images/", dirs => {
 async function getImages() {
 
     if (imageCount >= imagesPerLog) {
-        console.log("\n\n------------------------------------\nFolder images/log" + log + " successfully filled with " + imageCount + " images");
+        console.log("\n------------------------------------\nFolder images/log" + log + " successfully filled with " + imageCount + " images");
         return process.exit();
     };
 
