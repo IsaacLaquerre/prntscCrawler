@@ -2,6 +2,13 @@ import fetch from "node-fetch";
 import download from "image-downloader";
 import fs from "fs";
 
+process.on("unhandledRejection", (err) => {
+    return console.log("UnhandledRejection: " + err.message.replace(/\n/g, " "));
+});
+process.on("unhandledException", (err) => {
+    return console.log("UnhandledException: " + err.message.replace(/\n/g, " "));
+});
+
 var log;
 
 var imagesPerLog = 25;
@@ -31,7 +38,7 @@ getDirs("./images/", dirs => {
 
 async function getImages() {
 
-    if (imageCount === imagesPerLog) {
+    if (imageCount >= imagesPerLog) {
         console.log("\n\n------------------------------------\nfolder images/log" + log + " successfully filled with " + imagesPerLog + " images");
         return process.exit();
     };
@@ -61,10 +68,9 @@ async function getImages() {
         }
 
         download.image({ url: url, dest: "./images/log" + log, fileName: id }).then(({ filename }) => {
-            console.log("#" + imageCount + ", ID: " + id + ", saved as ", filename);
-        }).catch(() => { return getImages(); });
-
-        imageCount++;
+            console.log((imageCount + 1) + ": ID " + id + ", saved as", filename.split("\\")[2]);
+            imageCount++;
+        }).catch((err) => { console.log("Couldn't fetch image with ID \"" + id + "\": " + err.message.replace(/\n/g, " ")); return getImages(); });
 
         getImages();
     });
