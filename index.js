@@ -11,7 +11,7 @@ process.on("unhandledException", (err) => {
 
 var log;
 
-var imagesPerLog = 25;
+var imagesPerLog = process.argv[2] != undefined ? parseInt(process.argv[2]) : 25;
 var imageCount = 0;
 
 getDirs("./images/", dirs => {
@@ -30,7 +30,7 @@ getDirs("./images/", dirs => {
         fs.mkdirSync("./images/log" + log);
     }
     
-    console.log("Dumping " + imagesPerLog + " images in images/log" + log + "...\n------------------------------------\n");
+    console.log("Dumping " + imagesPerLog + " images in images/log" + log + "...\n------------------------------------");
 
     getImages();
 
@@ -39,7 +39,7 @@ getDirs("./images/", dirs => {
 async function getImages() {
 
     if (imageCount >= imagesPerLog) {
-        console.log("\n------------------------------------\nFolder images/log" + log + " successfully filled with " + imageCount + " images");
+        console.log("------------------------------------\nFolder images/log" + log + " successfully filled with " + imageCount + " images");
         return process.exit();
     };
 
